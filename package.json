@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "test": "node test/test.mjs",
-    "build:min": "esbuild index.mjs --bundle --minify --outfile=dist/mayo.min.js --format=esm --platform=browser",
+    "build:min": "esbuild index.mjs --bundle --minify --outfile=dist/mayo.min.js --format=esm --platform=browser --external:node:fs --external:node:path --external:node:crypto",
     "build": "npm run build:min"
   },
   "repository": {
