@@ -1,13 +1,19 @@
 {
-  "name": "qsafe-mayo-wasm",
+  "name": "@pinkparrot/qsafe-mayo-wasm",
   "version": "0.0.1",
   "author": "Pink Parrot",
   "description": "Post-quantum signatures in WebAssembly — MAYO-1 & MAYO-2, browser & Node.js ready",
-  "main": "index.mjs",
   "type": "module",
+  "exports": {
+    ".": {
+      "browser": "./dist/mayo.browser.min.js",
+      "default": "./index.mjs"
+    }
+  },
+  "main": "index.mjs",
   "scripts": {
     "test": "node test/test.mjs",
-    "build:min": "esbuild index.mjs --bundle --minify --outfile=dist/mayo.min.js --format=esm --platform=browser --external:node:fs --external:node:path --external:node:crypto",
+    "build:min": "esbuild index.mjs --bundle --minify --outfile=dist/mayo.browser.min.js --format=esm --platform=browser --define:ENVIRONMENT_IS_NODE=false --external:node:fs --external:node:path --external:node:crypto --external:node:url",
     "build": "npm run build:min"
   },
   "repository": {
