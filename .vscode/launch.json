@@ -1,0 +1,12 @@
+{
+    "configurations": [
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "test",
+			"skipFiles": ["<node_internals>/**"],
+			"program": "${workspaceFolder}/test/test.mjs",
+			"runtimeArgs": ["--inspect"]
+		}
+    ]
+}
