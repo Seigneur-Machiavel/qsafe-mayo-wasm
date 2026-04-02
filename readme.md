@@ -4,9 +4,12 @@
 
 JavaScript/WASM wrapper around [MAYO-C](https://github.com/PQCMayo/MAYO-C), a NIST post-quantum signature scheme finalist. Ships as two self-contained single-file modules with an unified JS API.
 
+Special thanks to Ward Beullens and his team — post-quantum crypto is hard enough without having to invent it yourself.
+
 ## Links
 
-- **NPM:** coming soon
+- **NPM:** (https://github.com/Seigneur-Machiavel/qsafe-mayo-wasm)
+- **BROWSER** (https://unpkg.com/@pinkparrot/qsafe-mayo-wasm/dist/mayo.browser.min.js)
 - **MAYO spec:** [pqmayo.org](https://pqmayo.org)
 - **MAYO-C source:** [github.com/PQCMayo/MAYO-C](https://github.com/PQCMayo/MAYO-C)
 
