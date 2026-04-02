@@ -1,0 +1,3 @@
+[submodule "mayo-c"]
+	path = mayo-c
+	url = https://github.com/PQCMayo/mayo-c.git
