@@ -8,7 +8,7 @@ Special thanks to Ward Beullens and his team — post-quantum crypto is hard eno
 
 ## Links
 
-- **NPM:** (https://github.com/Seigneur-Machiavel/qsafe-mayo-wasm)
+- **NPM:** (https://www.npmjs.com/package/@pinkparrot/qsafe-mayo-wasm)
 - **BROWSER** (https://unpkg.com/@pinkparrot/qsafe-mayo-wasm/dist/mayo.browser.min.js)
 - **MAYO spec:** [pqmayo.org](https://pqmayo.org)
 - **MAYO-C source:** [github.com/PQCMayo/MAYO-C](https://github.com/PQCMayo/MAYO-C)
