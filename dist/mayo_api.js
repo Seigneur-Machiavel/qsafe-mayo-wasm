@@ -19,7 +19,7 @@ export class MayoSigner {
     #secretKey = null;
     #secretKeySize; #publicKeySize; #signatureSize;
 
-    /** @param {'mayo1' | 'mayo2' | string} variant */
+    /** @param {string} [variant] Default: 'mayo1' */
     constructor(variant = 'mayo1') {
         if (variant !== 'mayo1' && variant !== 'mayo2') throw new Error(`Unsupported MAYO variant: ${variant}`);
         this.variant = variant;
@@ -29,8 +29,7 @@ export class MayoSigner {
     }
 
     /** Factory — preferred way to instantiate.
-     * @param {'mayo1' | 'mayo2' | string} variant
-     * @returns {Promise<MayoSigner>} */
+     * @param {string} [variant] Default: 'mayo1' */
     static async create(variant = 'mayo1') {
         const instance = new MayoSigner(variant);
         await instance.init();
@@ -40,10 +39,12 @@ export class MayoSigner {
     /** Loads the WASM module. Must be called before any crypto operation if not using create(). */
     async init() {
         if (this.#m) return;
-        this.#m = this.variant === 'mayo1' ? await Mayo1Module() : await Mayo2Module();
+		if (this.variant === 'mayo1') this.#m = await Mayo1Module();
+		if (this.variant === 'mayo2') this.#m = await Mayo2Module();
+		throw new Error(`Unsupported MAYO variant: ${this.variant}`);
     }
 
-    /** @returns {boolean} */
+    /** Indicates whether the WASM module is loaded and ready for crypto operations. */
     get ready() { return this.#m !== null; }
 
     #assertReady() {
@@ -86,8 +87,7 @@ export class MayoSigner {
     }
 
     /** Signs a message using the loaded secret key.
-     * @param {Uint8Array} msg
-     * @returns {Uint8Array|null} signature, or null if signing failed */
+     * @param {Uint8Array} msg @returns {Uint8Array|null} signature, or null if signing failed */
     sign(msg) {
         this.#assertReady();
         if (!this.#secretKey) throw new Error('No secret key loaded — call keypairFromSeed() or loadSecretKey() first');
@@ -110,10 +110,7 @@ export class MayoSigner {
     }
 
     /** Verifies a signature against a message and public key.
-     * @param {Uint8Array} msg
-     * @param {Uint8Array} signature
-     * @param {Uint8Array} publicKey
-     * @returns {boolean} */
+     * @param {Uint8Array} msg @param {Uint8Array} signature @param {Uint8Array} publicKey */
     verify(msg, signature, publicKey) {
         this.#assertReady();
         if (!(msg instanceof Uint8Array)) throw new TypeError('msg must be a Uint8Array');
