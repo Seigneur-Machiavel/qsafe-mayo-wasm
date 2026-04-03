@@ -6,7 +6,7 @@ import Mayo2Module from './mayo2.js';
 const SIZES = {
     mayo1: { secretKeySize: 24, publicKeySize: 1420, signatureSize: 454 },
     mayo2: { secretKeySize: 24, publicKeySize: 4912, signatureSize: 186 },
-};
+}; // Note: if we want to use MAYO5 we needs at least 40 bytes of seed.
 
 function alloc(m, size) {
     const ptr = m._malloc(size);
