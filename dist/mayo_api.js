@@ -19,10 +19,9 @@ export class MayoSigner {
     #secretKey = null;
     #secretKeySize; #publicKeySize; #signatureSize;
 
-    /** @param {'mayo1'|'mayo2'} variant */
+    /** @param {'mayo1' | 'mayo2' | string} variant */
     constructor(variant = 'mayo1') {
-        if (variant !== 'mayo1' && variant !== 'mayo2')
-            throw new Error(`Unsupported MAYO variant: ${variant}`);
+        if (variant !== 'mayo1' && variant !== 'mayo2') throw new Error(`Unsupported MAYO variant: ${variant}`);
         this.variant = variant;
         ({ secretKeySize: this.#secretKeySize,
            publicKeySize: this.#publicKeySize,
@@ -30,7 +29,7 @@ export class MayoSigner {
     }
 
     /** Factory — preferred way to instantiate.
-     * @param {'mayo1'|'mayo2'} variant
+     * @param {'mayo1' | 'mayo2' | string} variant
      * @returns {Promise<MayoSigner>} */
     static async create(variant = 'mayo1') {
         const instance = new MayoSigner(variant);
