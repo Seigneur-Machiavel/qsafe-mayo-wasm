@@ -15,7 +15,7 @@ Special thanks to Ward Beullens and his team — post-quantum crypto is hard eno
 
 ## Install
 ```bash
-npm install qsafe-mayo-wasm
+npm install @pinkparrot/qsafe-mayo-wasm
 ```
 
 ## Usage
