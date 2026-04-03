@@ -1,5 +1,8 @@
-import Mayo1Module from './mayo1.js';
-import Mayo2Module from './mayo2.js';
+import * as Mayo1 from './mayo1.js';
+import * as Mayo2 from './mayo2.js';
+
+const Mayo1Module = Mayo1.default ?? Mayo1;
+const Mayo2Module = Mayo2.default ?? Mayo2;
 
 /** @typedef {{ secretKey: Uint8Array, publicKey: Uint8Array }} Keypair */
 
