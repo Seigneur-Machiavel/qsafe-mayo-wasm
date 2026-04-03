@@ -1,5 +1,5 @@
-//import { MayoSigner } from '../dist/mayo_api.js';
-import { MayoSigner } from "../dist/mayo.browser.min.js";
+//import { MayoSigner } from "../dist/mayo.browser.min.js";
+import { MayoSigner } from "../index.mjs";
 
 const msg = new TextEncoder().encode('hello qsafe');
 

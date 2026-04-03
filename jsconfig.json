@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "checkJs": false,
+    "declaration": true,
+    "declarationDir": "./dist"
+  },
+  "include": ["index.mjs", "dist/mayo_api.js"]
+}

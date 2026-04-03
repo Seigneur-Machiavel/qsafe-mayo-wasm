@@ -1,5 +1,5 @@
-import Mayo1Module from './mayo1.js';
-import Mayo2Module from './mayo2.js';
+import Mayo1Module from './mayo1.cjs';
+import Mayo2Module from './mayo2.cjs';
 
 /** @typedef {{ secretKey: Uint8Array, publicKey: Uint8Array }} Keypair */
 
