@@ -79,8 +79,8 @@ For exact Emscripten/cmake version requirements, see the [MAYO-C build notes](ht
 ```powershell
 git clone --recurse-submodules https://github.com/Seigneur-Machiavel/qsafe-mayo-wasm
 npm i --include=dev
-.\build_mayo1.ps1   # → dist/mayo1.js
-.\build_mayo2.ps1   # → dist/mayo2.js
+.\build_mayo1.ps1   # → dist/mayo1.cjs
+.\build_mayo2.ps1   # → dist/mayo2.cjs
 ```
 
 WASM is inlined in each `.js` file (`SINGLE_FILE=1`) — no separate `.wasm` asset needed.

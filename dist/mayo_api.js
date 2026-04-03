@@ -1,8 +1,5 @@
-import * as Mayo1 from './mayo1.js';
-import * as Mayo2 from './mayo2.js';
-
-const Mayo1Module = Mayo1.default ?? Mayo1;
-const Mayo2Module = Mayo2.default ?? Mayo2;
+import Mayo1Module from './mayo1.js';
+import Mayo2Module from './mayo2.js';
 
 /** @typedef {{ secretKey: Uint8Array, publicKey: Uint8Array }} Keypair */
 
@@ -43,8 +40,8 @@ export class MayoSigner {
     async init() {
         if (this.#m) return;
 		if (this.variant === 'mayo1') this.#m = await Mayo1Module();
-		if (this.variant === 'mayo2') this.#m = await Mayo2Module();
-		throw new Error(`Unsupported MAYO variant: ${this.variant}`);
+		else if (this.variant === 'mayo2') this.#m = await Mayo2Module();
+		else throw new Error(`Unsupported MAYO variant: ${this.variant}`);
     }
 
     /** Indicates whether the WASM module is loaded and ready for crypto operations. */

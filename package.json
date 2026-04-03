@@ -13,7 +13,7 @@
   "main": "index.mjs",
   "scripts": {
     "test": "node test/test.mjs",
-    "build:min": "esbuild index.mjs --bundle --minify --outfile=dist/mayo.browser.min.js --format=esm --platform=browser --define:ENVIRONMENT_IS_NODE=false --external:node:fs --external:node:path --external:node:crypto --external:node:url",
+    "build:min": "esbuild index.mjs --bundle --outfile=dist/mayo.browser.min.js --format=esm --platform=browser --define:ENVIRONMENT_IS_NODE=false --external:node:module --external:node:fs --external:node:path --external:node:crypto --external:node:url",
     "build": "npm run build:min"
   },
   "repository": {

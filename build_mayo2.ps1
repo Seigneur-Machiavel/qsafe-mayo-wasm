@@ -23,7 +23,7 @@ emcc `
   -DENABLE_PARAMS_DYNAMIC `
   -Oz `
   -flto `
-  -o ./dist/mayo2.js `
+  -o ./dist/mayo2.cjs `
   -s WASM=1 `
   -s "EXPORTED_FUNCTIONS=['_keypair_from_seed','_sign','_verify','_malloc','_free']" `
   -s "EXPORTED_RUNTIME_METHODS=['ccall','cwrap','HEAPU8']" `
@@ -33,4 +33,6 @@ emcc `
   -s STACK_SIZE=4194304 `
   -s INITIAL_MEMORY=8388608
 
-Write-Host "Build done -> dist/mayo2.js"
+Write-Host "Build done -> dist/mayo2.cjs"
+node post-build.mjs
+Write-Host "Post-build done -> dist/mayo2.js"
