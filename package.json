@@ -1,6 +1,6 @@
 {
   "name": "@pinkparrot/qsafe-mayo-wasm",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Pink Parrot",
   "description": "Post-quantum signatures in WebAssembly — MAYO-1 & MAYO-2, browser & Node.js ready",
   "type": "module",
