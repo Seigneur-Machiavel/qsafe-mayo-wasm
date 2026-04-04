@@ -104,5 +104,5 @@ WASM is inlined in each `.js` file (`SINGLE_FILE=1`) — no separate `.wasm` ass
 ## License
 
 Apache-2.0 — see [LICENSE](./LICENSE).  
-MAYO-C is also Apache-2.0 — see [mayo-c/LICENSE](./mayo-c/LICENSE).
-MAYO-C NOTICE — see [NOTICE-MAYO-C](./NOTICE-MAYO-C)
+MAYO-C is also Apache-2.0 — see [mayo-c/LICENSE](./mayo-c/LICENSE).  
+MAYO-C NOTICE — see [NOTICE-MAYO-C](./NOTICE-MAYO-C).
