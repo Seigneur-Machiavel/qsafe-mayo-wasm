@@ -18,7 +18,7 @@ function alloc(m, size) {
 export class MayoSigner {
     #m = null;
     #secretKey = null;
-    #secretKeySize; #publicKeySize; #signatureSize;
+    #secretKeySize; #publicKeySize; #signatureSize; #maxMsgSize = DEFAULT_MAX_MSG_SIZE;
 	#msgPtr = 0; #sigPtr = 0; #skPtr = 0; #pkPtr = 0;
 
     /** @param {string} [variant] Default: 'mayo1' */
@@ -45,8 +45,8 @@ export class MayoSigner {
 		else if (this.variant === 'mayo2') this.#m = await Mayo2Module();
 		else throw new Error(`Unsupported MAYO variant: ${this.variant}`);
 
-		if (this.#m._mayo_init_buffers(maxMsgSize) !== 0)
-			throw new Error('mayo_init_buffers failed');
+		if (this.#m._mayo_init_buffers(maxMsgSize) !== 0) throw new Error('mayo_init_buffers failed');
+		this.#maxMsgSize = maxMsgSize;
 
 		// Cache buffer pointers once — never malloc again on hot path
 		this.#msgPtr = this.#m._get_msg_buf();
@@ -108,7 +108,9 @@ export class MayoSigner {
 		m.HEAPU8.set(msg,             this.#msgPtr);
 		m.HEAPU8.set(this.#secretKey, this.#skPtr);
 
-		if (m._sign(msg.length) !== 0) return null;
+		const ret = m._sign(msg.length);
+		if (ret === 2) throw new Error(`Message too large for sign() — ${msg.length} bytes exceeds max ${this.#maxMsgSize} bytes`);
+		if (ret !== 0) return null;
 		return m.HEAPU8.slice(this.#sigPtr, this.#sigPtr + this.#signatureSize);
 	}
 
@@ -127,6 +129,8 @@ export class MayoSigner {
 		m.HEAPU8.set(signature, this.#sigPtr);
 		m.HEAPU8.set(publicKey, this.#pkPtr);
 
-		return m._verify(msg.length) === 0;
+		const ret = m._verify(msg.length);
+		if (ret === 2) throw new Error(`Message too large for verify() — ${msg.length} bytes exceeds max ${this.#maxMsgSize} bytes`);
+		return ret === 0;
 	}
 }

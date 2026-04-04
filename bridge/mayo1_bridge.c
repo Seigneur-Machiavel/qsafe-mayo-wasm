@@ -36,15 +36,18 @@ int keypair_from_seed(const unsigned char *seed,
     return crypto_sign_keypair(cpk, csk);
 }
 
-// JS writes msg into _msg_buf, sk into _sk_buf before calling.
-// Result signature written into _sig_buf, length into _sig_len.
+// Return codes for sign/verify
+#define MAYO_ERR_MSG_TOO_LARGE 2
+#define MAYO_ERR_NOT_INIT      3
+
 int sign(size_t msglen) {
-    if (!_msg_buf || msglen > _max_msg_size) return 1;
+    if (!_msg_buf) return MAYO_ERR_NOT_INIT;
+    if (msglen > _max_msg_size) return MAYO_ERR_MSG_TOO_LARGE;
     return crypto_sign_signature(_sig_buf, &_sig_len, _msg_buf, msglen, _sk_buf);
 }
 
-// JS writes msg into _msg_buf, sig into _sig_buf, pk into _pk_buf before calling.
 int verify(size_t msglen) {
-    if (!_msg_buf || msglen > _max_msg_size) return 1;
+    if (!_msg_buf) return MAYO_ERR_NOT_INIT;
+    if (msglen > _max_msg_size) return MAYO_ERR_MSG_TOO_LARGE;
     return crypto_sign_verify(_sig_buf, CRYPTO_BYTES, _msg_buf, msglen, _pk_buf);
 }
