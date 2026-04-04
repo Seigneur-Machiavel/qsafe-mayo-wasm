@@ -37,12 +37,21 @@ export class MayoSigner {
     }
 
     /** Loads the WASM module. Must be called before any crypto operation if not using create(). */
-    async init() {
+    /*async init() {
         if (this.#m) return;
 		if (this.variant === 'mayo1') this.#m = await Mayo1Module();
 		else if (this.variant === 'mayo2') this.#m = await Mayo2Module();
 		else throw new Error(`Unsupported MAYO variant: ${this.variant}`);
-    }
+    }*/
+	async init() {
+		if (this.#m) return;
+		if (this.variant === 'mayo1') this.#m = await Mayo1Module();
+		else if (this.variant === 'mayo2') this.#m = await Mayo2Module();
+		else throw new Error(`Unsupported MAYO variant: ${this.variant}`);
+		
+		// Initialize persistent WASM heap buffers
+		if (this.#m._mayo_init_buffers() !== 0) throw new Error('mayo_init_buffers failed');
+	}
 
     /** Indicates whether the WASM module is loaded and ready for crypto operations. */
     get ready() { return this.#m !== null; }

@@ -21,11 +21,11 @@ emcc `
   -I ./mayo-c/src/generic `
   -I ./mayo-c/src/mayo_2 `
   -DENABLE_PARAMS_DYNAMIC `
-  -Oz `
+  -O3 `
   -flto `
   -o ./dist/mayo2.cjs `
   -s WASM=1 `
-  -s "EXPORTED_FUNCTIONS=['_keypair_from_seed','_sign','_verify','_malloc','_free']" `
+  -s "EXPORTED_FUNCTIONS=['_mayo_init_buffers','_keypair_from_seed','_sign','_verify','_malloc','_free']" `
   -s "EXPORTED_RUNTIME_METHODS=['ccall','cwrap','HEAPU8']" `
   -s MODULARIZE=1 `
   -s EXPORT_NAME="Mayo2Module" `
