@@ -26,8 +26,9 @@ emcc `
   -flto `
   -o ./dist/mayo1.cjs `
   -s WASM=1 `
-  -s "EXPORTED_FUNCTIONS=['_mayo_init_buffers','_keypair_from_seed','_sign','_verify','_malloc','_free']" `
-  -s "EXPORTED_RUNTIME_METHODS=['ccall','cwrap','HEAPU8']" `
+  -s "EXPORTED_FUNCTIONS=['_mayo_init_buffers','_keypair_from_seed','_sign','_verify','_malloc','_free','_get_msg_buf','_get_sig_buf','_get_sk_buf','_get_pk_buf','_get_sig_len']" `
+  -s "EXPORTED_RUNTIME_METHODS=['HEAPU8']" `
+  -s FILESYSTEM=0 `
   -s MODULARIZE=1 `
   -s EXPORT_NAME="Mayo1Module" `
   -s SINGLE_FILE=1 `
